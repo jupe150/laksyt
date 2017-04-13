@@ -148,15 +148,16 @@ class apache {
 
 Template -tiedosto:
 
-Listen 8880
-<VirtualHost *:8880>
-     ServerAdmin admin@testi.com
-     ServerName testi.com
-     ServerAlias www.testi.com
-     DocumentRoot /var/www/testi.com/
-     ErrorLog /var/www/testi.com/logs/error.log
-     CustomLog /var/www/testi.com/logs/access.log combined
-</VirtualHost
+> Listen 8880
+> <VirtualHost *:8880>
+>     ServerAdmin admin@testi.com
+>     ServerName testi.com
+>     ServerAlias www.testi.com
+>     DocumentRoot /var/www/testi.com/
+>     ErrorLog /var/www/testi.com/logs/error.log
+>     CustomLog /var/www/testi.com/logs/access.log combined
+> </VirtualHost>
+
 
 ## SSH:n konffaus
 
