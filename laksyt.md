@@ -6,7 +6,7 @@ d) Vapaaehtoinen vaikea. Tee uusi määritelty tyyppi (defined type), joka tekee
 ## Apachen konffaus ensiksi:
 Luodaan init.pp -tiedosto apachea varten:
 
-class apache {
+    class apache {
         package {'apache2':
         ensure => installed ,
         allowcdrom => true ,
@@ -67,7 +67,7 @@ class apache {
         require => Package['apache2'],
         }
 
-}
+    }
 
 Ajetaan tiedosto:
 
@@ -145,6 +145,7 @@ Ongelmat johtuivat liian innokkaasta ”before” -lauseen käytöstä. Virheet 
         enable => true ,
         require => Package['apache2'],
         }
+    }
 
 Template -tiedosto:
 
@@ -165,12 +166,12 @@ Sitten luodaan moduli SSH:lle:
 
 aloitushakemisto /etc/puppet/modules/
 
-sudo mkdir ssh
-cd mkdir
-sudo mkdir manifests
-sudo mkdir templates
-cd manifests
-nano init.pp
+    sudo mkdir ssh
+    cd mkdir
+    sudo mkdir manifests
+    sudo mkdir templates
+    cd manifests
+    nano init.pp
 
 muokataan init.pp:stä tällainen:
 
@@ -193,7 +194,7 @@ muokataan init.pp:stä tällainen:
         }
 
 
-}
+    }
 
 Tämän ajettuani sain virheilmoituksen:
 
@@ -209,9 +210,9 @@ Sitten importataan vielä modulit Gittiin:
 
 hakemistona: /home/jupe/.git/laksyt
 
-sudo cp -r /etc/puppet/modules/ .
-git add .
-git commit
-git pull
-git push
+    sudo cp -r /etc/puppet/modules/ .
+    git add .
+    git commit
+    git pull
+    git push
 
