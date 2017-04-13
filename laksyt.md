@@ -209,6 +209,7 @@ Sitten importataan vielä modulit Gittiin:
 hakemistona: /home/jupe/.git/laksyt
 
 sudo cp -r /etc/puppet/modules/ .
+git add .
 git commit
 git pull
 git push
