@@ -1,6 +1,11 @@
-h3. a) SSHD. Konfiguroi SSH uuteen porttiin Puppetilla. 
+h3.
+
+a) SSHD. Konfiguroi SSH uuteen porttiin Puppetilla. 
+
 b) Modulit Gittiin. Laita modulisi versionhallintaan niin, että saat ne helposti ajettua uudella Live-USB työpöydällä. 
+
 c) Etusivu uusiksi. Vaihda Apachen oletusweppisivu (default website) Puppetilla. 
+
 d) Vapaaehtoinen vaikea. Tee uusi määritelty tyyppi (defined type), joka tekee Apachen nimipohjaisia virtuaalipalvelimia (name based virtualhost). Voit simuloida nimipalvelun toimintaa käsin hosts-tiedostolla.
 
 ## Apachen konffaus ensiksi:
@@ -71,17 +76,17 @@ Luodaan init.pp -tiedosto apachea varten:
 
 Ajetaan tiedosto:
 
-sudo puppet apply -e 'class {'apache':}'
+    sudo puppet apply -e 'class {'apache':}'
 
 Virheilmoitushan sieltä tuli:
 
-Error: Could not set 'file' on ensure: No such file or directory @ dir_s_rmdir - /etc/apache2/sites-available/testi.com.conf20170413-1787-mc34x4.lock at 42:/etc/puppet/modules/apache/manifests/init.pp
-Error: Could not set 'file' on ensure: No such file or directory @ dir_s_rmdir - /etc/apache2/sites-available/testi.com.conf20170413-1787-mc34x4.lock at 42:/etc/puppet/modules/apache/manifests/init.pp
-Wrapped exception:
-No such file or directory @ dir_s_rmdir - /etc/apache2/sites-available/testi.com.conf20170413-1787-mc34x4.lock
-Error: /Stage[main]/Apache/File[/etc/apache2/sites-available/testi.com.conf]/ensure: change from absent to file failed: Could not set 'file' on ensure: No such file or directory @ dir_s_rmdir - /etc/apache2/sites-available/testi.com.conf20170413-1787-mc34x4.lock at 42:/etc/puppet/modules/apache/manifests/init.pp
-Notice: /Stage[main]/Apache/File[/etc/apache2/sites-enabled/testi.com.conf]: Dependency File[/etc/apache2/sites-available/testi.com.conf] has failures: true
-Warning: /Stage[main]/Apache/File[/etc/apache2/sites-enabled/testi.com.conf]: Skipping because of failed dependencies
+    Error: Could not set 'file' on ensure: No such file or directory @ dir_s_rmdir - /etc/apache2/sites-available/testi.com.conf20170413-1787-mc34x4.lock at 42:/etc/puppet/modules/apache/manifests/init.pp
+    Error: Could not set 'file' on ensure: No such file or directory @ dir_s_rmdir - /etc/apache2/sites-available/testi.com.conf20170413-1787-mc34x4.lock at 42:/etc/puppet/modules/apache/manifests/init.pp
+    Wrapped exception:
+    No such file or directory @ dir_s_rmdir - /etc/apache2/sites-available/testi.com.conf20170413-1787-mc34x4.lock
+    Error: /Stage[main]/Apache/File[/etc/apache2/sites-available/testi.com.conf]/ensure: change from absent to file failed: Could not set 'file' on ensure: No such file or directory @ dir_s_rmdir - /etc/apache2/sites-available/testi.com.conf20170413-1787-mc34x4.lock at 42:/etc/puppet/modules/apache/manifests/init.pp
+    Notice: /Stage[main]/Apache/File[/etc/apache2/sites-enabled/testi.com.conf]: Dependency File[/etc/apache2/sites-available/testi.com.conf] has failures: true
+    Warning: /Stage[main]/Apache/File[/etc/apache2/sites-enabled/testi.com.conf]: Skipping because of failed dependencies
 
 Ongelmat johtuivat liian innokkaasta ”before” -lauseen käytöstä. Virheet merkattu ****virhe**** ja ellei perään ole esitetty muutettavaa kenttää, ne on poistettu eikä tilalle ole tullut mitään (tässä siis vanha init.pp):
 
@@ -198,13 +203,13 @@ muokataan init.pp:stä tällainen:
 
 Tämän ajettuani sain virheilmoituksen:
 
-Error: Could not find dependency Package[apache2] for Service[ssh] at /etc/puppet/modules/ssh/manifests/init.pp:17
+    Error: Could not find dependency Package[apache2] for Service[ssh] at /etc/puppet/modules/ssh/manifests/init.pp:17
 
 Eli muutin tuon apache2:n vielä ssh:ksi, niin läpi meni ilman virheilmoituksia.
 
-Templateen -tiedostoksi kopsasin tuon ssh:n alkuperäisen conffin ja muutin sinne kohdan:
+Template -tiedostoksi kopsasin tuon ssh:n alkuperäisen conffin ja muutin sinne kohdan:
 
-Port 22 --> Port 22221
+    Port 22 --> Port 22221
 
 Sitten importataan vielä modulit Gittiin:
 
