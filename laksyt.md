@@ -85,7 +85,7 @@ Warning: /Stage[main]/Apache/File[/etc/apache2/sites-enabled/testi.com.conf]: Sk
 
 Ongelmat johtuivat liian innokkaasta ”before” -lauseen käytöstä. Virheet merkattu ****virhe**** ja ellei perään ole esitetty muutettavaa kenttää, ne on poistettu eikä tilalle ole tullut mitään (tässä siis vanha init.pp):
 
-class apache {
+    class apache {
         package {'apache2':
         ensure => installed ,
         allowcdrom => true ,
@@ -148,15 +148,15 @@ class apache {
 
 Template -tiedosto:
 
-> Listen 8880
-> <VirtualHost *:8880>
->     ServerAdmin admin@testi.com
->     ServerName testi.com
->     ServerAlias www.testi.com
->     DocumentRoot /var/www/testi.com/
->     ErrorLog /var/www/testi.com/logs/error.log
->     CustomLog /var/www/testi.com/logs/access.log combined
-> </VirtualHost>
+    Listen 8880 
+    <VirtualHost *:8880>
+        ServerAdmin admin@testi.com
+        ServerName testi.com
+        ServerAlias www.testi.com
+        DocumentRoot /var/www/testi.com/
+        ErrorLog /var/www/testi.com/logs/error.log
+        CustomLog /var/www/testi.com/logs/access.log combined
+    </VirtualHost>
 
 
 ## SSH:n konffaus
