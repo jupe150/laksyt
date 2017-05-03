@@ -22,7 +22,7 @@ Luodaan init.pp -tiedosto apachea varten:
         require => Package['apache2'] ,
         group => 'www-data',
         owner => 'root',
-        mode => 0755,
+        mode => '0755',
         before => Service['apache2'],
         }
 
@@ -31,7 +31,7 @@ Luodaan init.pp -tiedosto apachea varten:
         require => Package['apache2'] ,
         group => 'www-data',
         owner => 'root',
-        mode => 0775,
+        mode => '0775',
         before => Service['apache2'],
         }
 
@@ -41,7 +41,7 @@ Luodaan init.pp -tiedosto apachea varten:
         content => 'trolololo' ,
         group => 'www-data',
         owner => 'root',
-        mode => 0755,
+        mode => '0755',
         before => Service['apache2'],
         }
 
@@ -50,7 +50,7 @@ Luodaan init.pp -tiedosto apachea varten:
         content  => template("apache/testi.com.erb"),
         group => 'www-data',
         owner => 'root',
-        mode => 0755,
+        mode => '0755',
         before => Service['apache2'],
         }
 
@@ -101,7 +101,7 @@ Ongelmat johtuivat liian innokkaasta ”before” -lauseen käytöstä. Virheet 
         require => Package['apache2'] ,
         group => 'www-data',
         owner => 'root',
-        mode => 0755,
+        mode => '0755',
         ****before => Service['apache2'],****
         }
 
@@ -110,7 +110,7 @@ Ongelmat johtuivat liian innokkaasta ”before” -lauseen käytöstä. Virheet 
         require => Package['apache2'] ,
         group => 'www-data',
         owner => 'root',
-        mode => 0775,
+        mode => '0775',
         ****before => Service['apache2'],****
         }
 
@@ -120,7 +120,7 @@ Ongelmat johtuivat liian innokkaasta ”before” -lauseen käytöstä. Virheet 
         content => 'trolololo' ,
         group => 'www-data',
         owner => 'root',
-        mode => 0755,
+        mode => '0755',
         ****before => Service['apache2'],****
         }
 
@@ -129,7 +129,7 @@ Ongelmat johtuivat liian innokkaasta ”before” -lauseen käytöstä. Virheet 
         content  => template("apache/testi.com.erb"),
         group => 'www-data',
         owner => 'root',
-        mode => 0755,
+        mode => '0755',
         ****before => Service['apache2'],****  --> require => Package['apache2']
         }
 
